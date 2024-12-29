@@ -153,11 +153,9 @@ src="https://www.facebook.com/tr?id=789906247803591&ev=PageView&noscript=1"
     let score = 0;
 
     function createFallingItem() {
-        const item = document.createElement('img');
-        item.src = 'C:/Users/Spiral_Ng/Desktop/Kopitiam/Kopitiam/58391126_9387525.jpg'; // Local image path
+        const item = document.createElement('div');
+        item.className = 'falling-item'; // Use the class for styling
         item.style.position = 'absolute';
-        item.style.width = '70px'; // Adjust size as needed
-        item.style.height = '70px'; // Adjust size as needed
         item.style.left = Math.random() * (gameArea.clientWidth - 30) + 'px';
         item.style.top = '0px';
         gameArea.appendChild(item);
@@ -184,19 +182,15 @@ src="https://www.facebook.com/tr?id=789906247803591&ev=PageView&noscript=1"
 </script>
 
 <style>
-    /* No need for .falling-item class anymore */
-</style>
-</script>
-
-<style>
     .falling-item {
         position: absolute;
-        width: 30px;
-        height: 30px;
-        background-color: #00f;
-        border-radius: 50%;
+        width: 30px; /* Adjust size as needed */
+        height: 30px; /* Adjust size as needed */
+        background-color: red; /* Red color for the circle */
+        border-radius: 50%; /* Make it a circle */
     }
 </style>
+
 <script data-cfasync="false">
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
