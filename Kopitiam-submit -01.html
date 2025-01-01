@@ -110,7 +110,7 @@ function createCactus() {
 
 	let cactusInterval = setInterval(() => {
 		let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'));
-		if (cactusLeft < -20) {
+		if (cactusLeft < -60) {
 			clearInterval(cactusInterval);
 			cactus.remove();
 			score++;
