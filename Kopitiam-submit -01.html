@@ -55,88 +55,7 @@
 </head>
 <body>
 
-<!-- Dinosaur Game Section -->
-<h2 class="centered-text">Page Not Found, But the Fun’s Just Begun! Press Spacebar to Jump Over Boxes!</h2>
-<div id="dinoGame">
-<div id="dino"></div>
-</div>
-<div id="scoreDino">Score: 0</div>
 
-<script>
-// Dinosaur Game Logic
-const dinoGame = document.getElementById('dinoGame');
-const dino = document.getElementById('dino');
-const scoreDino = document.getElementById('scoreDino');
-let score = 0;
-let isJumping = false;
-
-function jump() {
-	if (isJumping) return;
-	isJumping = true;
-	canCreateCactus = false; // Lock cactus creation
-	let jumpHeight = 0;
-	const jumpInterval = setInterval(() => {
-		if (jumpHeight >= 100) {
-			clearInterval(jumpInterval);
-			const fallInterval = setInterval(() => {
-				if (jumpHeight <= 0) {
-					clearInterval(fallInterval);
-					isJumping = false;
-					canCreateCactus = true; // Unlock cactus creation
-				} else {
-					jumpHeight -= 5;
-					dino.style.bottom = jumpHeight + 'px';
-				}
-			}, 20);
-		} else {
-			jumpHeight += 5;
-			dino.style.bottom = jumpHeight + 'px';
-		}
-	}, 20);
-}
-
-document.addEventListener('keydown', (event) => {
-	if (event.code === 'Space') {
-		jump();
-	}
-});
-
-function createCactus() {
-	if (!canCreateCactus) return; // Prevent cactus creation if jumping
-	const cactus = document.createElement('div');
-	cactus.className = 'cactus';
-	cactus.style.left = '100%';
-	dinoGame.appendChild(cactus);
-
-	let cactusInterval = setInterval(() => {
-		let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'));
-		if (cactusLeft < -60) {
-			clearInterval(cactusInterval);
-			cactus.remove();
-			score++;
-			scoreDino.textContent = 'Score: ' + score;
-		} else {
-			cactus.style.left = cactusLeft - 5 + 'px';
-		}
-
-		// Collision detection
-		const dinoRect = dino.getBoundingClientRect();
-		const cactusRect = cactus.getBoundingClientRect();
-		if (
-			cactusLeft < dinoRect.right &&
-			cactusLeft + 20 > dinoRect.left &&
-			dinoRect.bottom > dinoGame.clientHeight - 40
-		) {
-			alert('Game Over! Your score: ' + score);
-			clearInterval(cactusInterval);
-			cactus.remove();
-			score = 0; // Reset score scoreDino.textContent = 'Score: ' + score;
-		}
-	}, 20);
-}
-
-setInterval(createCactus, 2000); // Create a new cactus every 2 seconds
-</script>
 <!-- End Google Tag Manager for WordPress by gtm4wp.com -->
 	<!-- This site is optimized with the Yoast SEO plugin v24.1 - https://yoast.com/wordpress/plugins/seo/ -->
 	<title>Page not found | Kopitiam</title>
@@ -416,20 +335,100 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		</div>
 						</div>
 				</div>
-				<div class="elementor-element elementor-element-37feff71 elementor-widget elementor-widget-heading" data-id="37feff71" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-					<p class="elementor-heading-title elementor-size-default">You can navigate through our menu or use this search bar:</p>				</div>
-				</div>
+				<!-- Dinosaur Game Section -->
+<h2 class="centered-text">Page Not Found, But the Fun’s Just Begun! Press Spacebar to Jump Over Boxes!</h2>
+<div id="dinoGame">
+<div id="dino"></div>
+</div>
+<div id="scoreDino">Score: 0</div>
+
+<script>
+// Dinosaur Game Logic
+const dinoGame = document.getElementById('dinoGame');
+const dino = document.getElementById('dino');
+const scoreDino = document.getElementById('scoreDino');
+let score = 0;
+let isJumping = false;
+
+function jump() {
+	if (isJumping) return;
+	isJumping = true;
+	canCreateCactus = false; // Lock cactus creation
+	let jumpHeight = 0;
+	const jumpInterval = setInterval(() => {
+		if (jumpHeight >= 100) {
+			clearInterval(jumpInterval);
+			const fallInterval = setInterval(() => {
+				if (jumpHeight <= 0) {
+					clearInterval(fallInterval);
+					isJumping = false;
+					canCreateCactus = true; // Unlock cactus creation
+				} else {
+					jumpHeight -= 5;
+					dino.style.bottom = jumpHeight + 'px';
+				}
+			}, 20);
+		} else {
+			jumpHeight += 5;
+			dino.style.bottom = jumpHeight + 'px';
+		}
+	}, 20);
+}
+
+document.addEventListener('keydown', (event) => {
+	if (event.code === 'Space') {
+		jump();
+	}
+});
+
+function createCactus() {
+	if (!canCreateCactus) return; // Prevent cactus creation if jumping
+	const cactus = document.createElement('div');
+	cactus.className = 'cactus';
+	cactus.style.left = '100%';
+	dinoGame.appendChild(cactus);
+
+	let cactusInterval = setInterval(() => {
+		let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'));
+		if (cactusLeft < -60) {
+			clearInterval(cactusInterval);
+			cactus.remove();
+			score++;
+			scoreDino.textContent = 'Score: ' + score;
+		} else {
+			cactus.style.left = cactusLeft - 5 + 'px';
+		}
+
+		// Collision detection
+		const dinoRect = dino.getBoundingClientRect();
+		const cactusRect = cactus.getBoundingClientRect();
+		if (
+			cactusLeft < dinoRect.right &&
+			cactusLeft + 20 > dinoRect.left &&
+			dinoRect.bottom > dinoGame.clientHeight - 40
+		) {
+			alert('Game Over! Your score: ' + score);
+			clearInterval(cactusInterval);
+			cactus.remove();
+			score = 0; // Reset score scoreDino.textContent = 'Score: ' + score;
+		}
+	}, 20);
+}
+
+setInterval(createCactus, 2000); // Create a new cactus every 2 seconds
+</script>
+<div class="elementor-element elementor-element-37feff71 elementor-widget elementor-widget-heading" data-id="37feff71" data-element_type="widget" data-widget_type="heading.default">
+	<div class="elementor-widget-container">
+		<p class="elementor-heading-title elementor-size-default">You can navigate through our menu or use this search bar:</p>				</div>
+	</div>
 				<div class="elementor-element elementor-element-7f2a2e4f elementor-search-form--skin-classic elementor-search-form--button-type-icon elementor-search-form--icon-search elementor-widget elementor-widget-search-form" data-id="7f2a2e4f" data-element_type="widget" data-settings="{&quot;skin&quot;:&quot;classic&quot;}" data-widget_type="search-form.default">
 				<div class="elementor-widget-container">
 							<search role="search">
 			<form class="elementor-search-form" action="https://www.kopitiam.biz" method="get">
 												<div class="elementor-search-form__container">
 					<label class="elementor-screen-only" for="elementor-search-form-7f2a2e4f">Search</label>
-
 					
 					<input id="elementor-search-form-7f2a2e4f" placeholder="Search..." class="elementor-search-form__input" type="search" name="s" value="">
-					
 											<button class="elementor-search-form__submit" type="submit" aria-label="Search">
 															<i aria-hidden="true" class="fas fa-search"></i>													</button>
 			
